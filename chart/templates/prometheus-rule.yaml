@@ -2,17 +2,16 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ include "metrics-app.fullname" . }}
+  name: {{ include "slo-app.fullname" . }}
   labels:
     release: prometheus-operator # Hack
-    {{- include "metrics-app.labels" . | nindent 4 }}
+    {{- include "slo-app.labels" . | nindent 4 }}
 spec:
   groups:
-  - name: {{ include "metrics-app.fullname" . }}-alertRules
+  - name: {{ include "slo-app.fullname" . }}-alertRules
     rules:
     {{- toYaml .Values.alertRules | nindent 4 }}
-  - name: {{ include "metrics-app.fullname" . }}-recordRules
+  - name: {{ include "slo-app.fullname" . }}-recordRules
     rules:
     {{- toYaml .Values.recordRules | nindent 4 }}
-
 {{- end }}

@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: vbabichev/metrics-app
+  repository: vbabichev/slo-app
   pullPolicy: IfNotPresent
   tag: latest
 
@@ -17,7 +17,7 @@ ingress:
   annotations:
     # kubernetes.io/ingress.class: nginx
   hosts:
-    - host: metrics-app.local
+    - host: slo-app.local
       paths: []
 
 resources: {}

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "metrics-app.fullname" . }}-dashboards
+  name: {{ include "slo-app.fullname" . }}-dashboards
   labels:
-    {{- include "metrics-app.labels" . | nindent 4 }}
+    {{- include "slo-app.labels" . | nindent 4 }}
     grafana_dashboard: "1"
 
 data:

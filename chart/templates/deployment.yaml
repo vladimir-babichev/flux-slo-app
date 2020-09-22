@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "metrics-app.fullname" . }}
+  name: {{ include "slo-app.fullname" . }}
   labels:
-    {{- include "metrics-app.labels" . | nindent 4 }}
+    {{- include "slo-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "metrics-app.selectorLabels" . | nindent 6 }}
+      {{- include "slo-app.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "metrics-app.selectorLabels" . | nindent 8 }}
+        {{- include "slo-app.selectorLabels" . | nindent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -28,11 +28,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: web
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: web
       {{- with .Values.affinity }}
       affinity:

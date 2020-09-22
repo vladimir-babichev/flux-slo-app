@@ -2,14 +2,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "metrics-app.fullname" . }}
+  name: {{ include "slo-app.fullname" . }}
   labels:
     release: prometheus-operator # Hack!
-    {{- include "metrics-app.labels" . | nindent 4 }}
+    {{- include "slo-app.labels" . | nindent 4 }}
 spec:
   endpoints:
   - interval: "{{ .Values.metrics.scanInterval }}"
     port: "{{ .Values.metrics.port }}"
   selector:
     matchLabels:
-      {{- include "metrics-app.selectorLabels" . | nindent 6 }}
+      {{- include "slo-app.selectorLabels" . | nindent 6 }}
