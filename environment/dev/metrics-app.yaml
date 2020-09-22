@@ -14,7 +14,7 @@ spec:
     ref: master
   values:
     image:
-      repository: vbabichev/merics-app
+      repository: vbabichev/metrics-app
       tag: dev-0.1.0
 
     ingress:
