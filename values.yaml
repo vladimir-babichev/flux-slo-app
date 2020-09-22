@@ -6,6 +6,7 @@ ingress:
     - host: metrics-app.host
       paths: ["/"]
 enableMonigtoring: "false"
+
 alertRules:
   - alert: VersionAlert
     expr: version{job="metrics-app"} != 1
